@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #ifndef PERCEPTRON
@@ -10,7 +11,9 @@ class Perceptron {
 public:
 	//Defualt Constructor
 	Perceptron(){
+		srand(time(0));
 		cout << "Hello Perceptron | Default" << endl;
+		weightSize = 0; 
 		weightCapacity = defaultMaxWeightSize; //Default of 2
 		weights = new float[weightCapacity];
 
@@ -19,6 +22,7 @@ public:
 		for (int i = 0; i < weightCapacity; i++) {
 			// Generate psuedo-random value from -1 - 1
 			randomValue = RandomFloat(weightLow, weightHigh);
+			cout << randomValue << endl;
 			weights[i] = randomValue;
 			weightSize++;
 		}
@@ -26,7 +30,9 @@ public:
 
 	//Constructor
 	Perceptron(const int maxWeightSize) {
+		srand(time(0));
 		cout << "Hello Perceptron" << endl;
+		weightSize = 0; 
 		weightCapacity = maxWeightSize;
 		weights = new float[weightCapacity];
 
@@ -43,6 +49,7 @@ public:
 	int guesser(const float* inputs) {
 		float sum = 0;
 		for (int i = 0; i < weightSize; i++) {
+			cout << sum << endl;
 			sum += inputs[i] * weights[i];
 		}
 		return sign(sum);
@@ -63,6 +70,7 @@ private:
 
 	// Activation Function
 	int sign(float number) {
+		cout << number << endl;
 		if (number < 0)
 			return -1;
 		else
