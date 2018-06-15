@@ -6,5 +6,5 @@ using std::endl;
 
 int main() {
 	cout << "Hello, World" << endl;
-	Perceptron perceptron(1);
+	Perceptron perceptron;
 }
