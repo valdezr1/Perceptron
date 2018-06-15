@@ -40,6 +40,14 @@ public:
 		}
 	}
 
+	int guesser(const float* inputs) {
+		float sum = 0;
+		for (int i = 0; i < weightSize; i++) {
+			sum += inputs[i] * weights[i];
+		}
+		return sign(sum);
+	}
+
 	//Destructor 
 	~Perceptron() {
 		delete[] weights;
@@ -51,6 +59,14 @@ private:
 		float diff = b - a;
 		float r = random * diff;
 		return a + r;
+	}
+
+	// Activation Function
+	int sign(float number) {
+		if (number < 0)
+			return -1;
+		else
+			return 1;
 	}
 
 	const int defaultMaxWeightSize = 2;
