@@ -49,10 +49,19 @@ public:
 	int guesser(const float* inputs) {
 		float sum = 0;
 		for (int i = 0; i < weightSize; i++) {
-			cout << sum << endl;
 			sum += inputs[i] * weights[i];
 		}
 		return sign(sum);
+	}
+
+	void train(const float* inputs, int target) {
+		int guess = guesser(inputs);
+		int error = target - guess;
+		
+		//Tune all weights
+		for (int i = 0; i < weightSize; i++) {
+			weights[i] += error * inputs[i];
+		}
 	}
 
 	//Destructor 
